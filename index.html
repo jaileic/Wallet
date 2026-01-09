@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wallet - Login</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+  <style>
+    body { background: linear-gradient(90deg,rgb(174, 238, 226) 0%, rgb(180, 173, 247) 50%, rgb(234, 193, 251) 100%);; padding: 40px;}
+    .container-fluid { max-width: 400px; margin: 0 auto; background: rgb(255, 255, 255) ;border-radius: 6px;box-shadow: 0 5px 10px rgba(0,0,0,0.1);}
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="p-3 mb-2 bg-info text-black">
+    <h2>Inicio de Sesión</h2>
+     <form id="loginForm">
+    </div>
+      <div class="form-group">
+        <div class="p-3 mb-2 text-black">
+        <label for="email"><strong>Email:</strong></label>
+        <input type="email" class="form-control" id="email" placeholder="Ingrese correo" required>
+        </div>
+      <div class="form-group">
+        <div class="p-3 mb-2 text-black">
+        <label for="password"><strong>Contraseña:</strong></label>
+        <input type="password" class="form-control" id="password" placeholder="Ingrese contraseña" required>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-info btn-lg btn-block">Iniciar sesión</button> 
+    </form>
+  </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        
+        document.getElementById('loginForm').addEventListener('submit', function(evento) {
+            
+            evento.preventDefault();
+
+            var email = document.getElementById('email').value;
+            var pass = document.getElementById('password').value;
+
+            if(email === 'admin@wallet.com' && pass === '123456') {
+                window.location.href = 'menu.html';
+            } else {
+                alert('Datos incorrectos');
+                document.getElementById('password').value = '';
+            }
+        });
+
+        </script>
+</body>
+</html>

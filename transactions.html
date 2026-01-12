@@ -2,24 +2,18 @@
 <html>
 <head>
   <title>Wallet - Últimos Movimientos</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
   <style>
-    body {
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: 0 auto;
-    }
+  body { background: linear-gradient(90deg,rgb(174, 238, 226) 0%, rgb(180, 173, 247) 50%, rgb(234, 193, 251) 100%);; padding: 40px;}
+  .container-fluid { max-width: 400px; margin: 0 auto; background: rgb(255, 255, 255) ;border-radius: 6px;box-shadow: 0 5px 10px rgba(0,0,0,0.1);}
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="p-3 mb-2 bg-info text-dark">
+  <div class="container-fluid">
+    <div class="p-3 mb-2 bg-info text-black">
     <h2>Últimos Movimientos</h2>
     </div>
-     <div class="p-3 mb-2 bg-secondary text-white">
+     <div class="p-3 mb-2">
        <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -57,7 +51,52 @@
   </tbody>
 </table>
     <br>
-    <a href="menu.html" class="btn btn-info">Volver al Menú Principal</a>
+    <a href="menu.html" class="btn btn-lg btn-block btn-info">Volver al Menú Principal</a>
   </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // 1. Cargar Saldo
+            var saldo = localStorage.getItem('walletSaldo') || 0;
+            $('#saldoDisplay').text('$' + saldo);
+
+            // 2. Cargar Historial
+            // El "|| []" es vital: si no hay historial, inicia uno vacío para que no dé error
+            var historial = JSON.parse(localStorage.getItem('walletHistorial')) || [];
+            
+            var contenedor = $('#listaMovimientos');
+
+            // 3. Validar si hay movimientos
+            if(historial.length === 0) {
+                contenedor.html('<div class="alert alert-warning text-center">No hay movimientos registrados aún.</div>');
+            } else {
+                // 4. Recorrer el array y generar HTML
+                historial.forEach(function(mov) {
+                    
+                    var claseColor = mov.esIngreso ? 'text-success' : 'text-danger';
+                    var signo = mov.esIngreso ? '+' : '-';
+
+                    var itemHTML = `
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">${mov.tipo}</h5>
+                                <small class="${claseColor}" style="font-size: 1.1em; font-weight: bold;">
+                                    ${signo}$${mov.monto}
+                                </small>
+                            </div>
+                            <p class="mb-1">${mov.descripcion}</p>
+                            <small class="text-muted">${mov.fecha}</small>
+                        </a>
+                    `;
+
+                    contenedor.append(itemHTML);
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>

@@ -2,34 +2,75 @@
 <html>
 <head>
   <title>Wallet - Depositar</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
   <style>
-    body {
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: 0 auto;
-    }
+   body { background: linear-gradient(90deg,rgb(174, 238, 226) 0%, rgb(180, 173, 247) 50%, rgb(234, 193, 251) 100%);; padding: 40px;}
+    .container-fluid { max-width: 400px; margin: 0 auto; background: rgb(255, 255, 255) ;border-radius: 6px;box-shadow: 0 5px 10px rgba(0,0,0,0.1);}
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="p-3 mb-2 bg-info text-dark">
+  <div class="container-fluid">
+    <div class="p-3 mb-2 bg-info text-black">
     <h2>Depositar</h2>
+    <div id="alertMensaje" class="alert" style="display: none;"></div>
     </div>
-      <div class="p-3 mb-2 bg-secondary text-white">
-    <form>
+      <div class="p-3 mb-2 text-black">
+    <form id="depositForm">
       <div class="form-group">
-        <label for="depositAmount">Monto a depositar:</label>
-        <input type="number" class="form-control" id="depositAmount" placeholder="Ingrese su monto">
+        <label for="depositAmount"><strong>Monto a depositar:</strong></label>
+        <input type="number" class="form-control" id="depositAmount" placeholder="Ingrese su monto" min="1" required>
         </br>
       </div>
-      <button type="submit" class="btn btn-info">Realizar depósito</button>
+      <button type="submit" class="btn btn-info btn-lg btn-block">Realizar depósito</button>
     </form>
     </br>
-    <a href="menu.html" class="btn btn-light">Volver al Menú Principal</a>
+    <a href="menu.html" class="btn btn-outline-info btn-lg btn- btn-block">Volver al Menú Principal</a>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+
+
+
+        $(document).ready(function() {
+            var saldoActual = localStorage.getItem('walletSaldo');
+            if(saldoActual === null) {
+                saldoActual = 0;
+            } else {
+                saldoActual = parseInt(saldoActual); 
+            }
+
+            // Versión Vanilla JS: document.getElementById('depositForm').addEventListener('submit', function(evento) {
+            $('#depositForm').submit(function(evento) {
+                evento.preventDefault();
+                var montoIngresado = $('#depositAmount').val();
+                var montoNumero = parseInt(montoIngresado);
+
+                if(montoNumero > 0) {
+                    var nuevoSaldo = saldoActual + montoNumero;
+                    localStorage.setItem('walletSaldo', nuevoSaldo);
+                    
+                    // Solo agregamos la clase de éxito sin lógica de limpieza
+                    $('#alertMensaje').addClass('alert-success');
+                    $('#alertMensaje').text('¡Depósito exitoso! Nuevo saldo: $' + nuevoSaldo);
+                    
+                    $('#alertMensaje').slideDown();
+                    $('#depositAmount').val('');
+                    saldoActual = nuevoSaldo;
+
+                } else {
+                    // Solo agregamos la clase de error sin lógica de limpieza
+                    $('#alertMensaje').addClass('alert-danger');
+                    $('#alertMensaje').text('El monto debe ser mayor a 0');
+                    $('#alertMensaje').slideDown();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
 </body>
 </html>

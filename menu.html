@@ -2,33 +2,52 @@
 <html>
 <head>
   <title>Wallet - Menú Principal</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
   <style>
-    body {
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 400px;
-      margin: 0 auto;
-    }
+ body { background: linear-gradient(90deg,rgb(174, 238, 226) 0%, rgb(180, 173, 247) 50%, rgb(234, 193, 251) 100%);; padding: 40px;}
+    .container-fluid { max-width: 400px; margin: 0 auto; background: rgb(255, 255, 255) ;border-radius: 6px;box-shadow: 0 5px 10px rgba(0,0,0,0.1);}
+  </style>
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="p-3 mb-2 bg-info text-dark">
+  <div class="container-fluid">
+    <div class="p-3 mb-2 bg-info text-black">
     <h2>Menú Principal</h2>
     </div>
-    <div class="p-3 mb-2 bg-secondary text-white">
+    <div class="p-3 mb-2 text-black">
     <div class="form-group">
-      <label for="balance">Dinero en cuenta:</label>
+      <label for="balance"><strong>Dinero en cuenta:</strong></label>
       <h3>$60000</h3>
     </div>
     </br>
-    <div class="btn-group" role="group" aria-label="Basic outlined example">
-    <a href="deposit.html" class="btn btn-info">Depositar</a>
-    <a href="sendmoney.html" class="btn btn-light">Enviar Dinero</a>
-    <a href="transactions.html" class="btn btn-info">Últimos Movimientos</a>
+    <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
+    <a href="deposit.html" id="btnDepositar" class="btn btn-info">Depositar</a>
+    <a href="sendmoney.html" id="btnEnviar" class="btn btn-outline-info">Enviar Dinero</a>
+    <a href="transactions.html" id="btnMovimientos" class="btn btn-info">Últimos Movimientos</a>
   </div>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById("btnDepositar").addEventListener("click", function (e) {
+    e.preventDefault(); // evita que navegue inmediatamente
+    alert("Redirigiendo a depositar");
+    window.location.href = "deposit.html";
+  });
+
+  document.getElementById("btnEnviar").addEventListener("click", function (e) {
+    e.preventDefault();
+    alert("Redirigiendo a enviar dinero");
+    window.location.href = "sendmoney.html";
+  });
+
+  document.getElementById("btnMovimientos").addEventListener("click", function (e) {
+    e.preventDefault();
+    alert("Redirigiendo a últimos movimientos");
+    window.location.href = "transactions.html";
+  });
+        
+        </script>
 </body>
 </html>

@@ -13,6 +13,7 @@
   <div class="container-fluid">
     <div class="p-3 mb-2 bg-info text-black">
     <h2>Inicio de Sesión</h2>
+    <div id="alert-container"></div>
      <form id="loginForm">
     </div>
       <div class="form-group">
@@ -34,22 +35,38 @@
        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <script>
-        
-        document.getElementById('loginForm').addEventListener('submit', function(evento) {
-            
-            evento.preventDefault();
+$(document).ready(function () {
 
-            var email = document.getElementById('email').value;
-            var pass = document.getElementById('password').value;
+  $('#loginForm').submit(function (e) {
+    e.preventDefault();
 
-            if(email === 'admin@wallet.com' && pass === '123456') {
-                window.location.href = 'menu.html';
-            } else {
-                alert('Datos incorrectos');
-                document.getElementById('password').value = '';
-            }
-        });
+    const email = $('#email').val();
+    const password = $('#password').val();
 
-        </script>
+    $('#alert-container').html('');
+
+    if (email === 'admin@wallet.com' && password === '123456') {
+      $('#alert-container').html(`
+        <div class="alert alert-success">
+          Inicio de sesión exitoso ✅
+        </div>
+      `);
+
+      setTimeout(() => {
+        window.location.href = 'menu.html';
+      }, 1500);
+
+    } else {
+      $('#alert-container').html(`
+        <div class="alert alert-danger">
+          Email o contraseña incorrectos ❌
+        </div>
+      `);
+      $('#password').val('');
+    }
+  });
+
+});
+</script>
 </body>
 </html>

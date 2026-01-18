@@ -17,7 +17,7 @@
     <div class="p-3 mb-2 text-black">
     <div class="form-group">
       <label for="balance"><strong>Dinero en cuenta:</strong></label>
-      <h3>$60000</h3>
+      <h3 id="saldoActual">$0</h3>
     </div>
     </br>
     <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
@@ -30,24 +30,31 @@
        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <script>
-        document.getElementById("btnDepositar").addEventListener("click", function (e) {
-    e.preventDefault(); // evita que navegue inmediatamente
-    alert("Redirigiendo a depositar");
-    window.location.href = "deposit.html";
+$(document).ready(function () {
+
+  const saldo = localStorage.getItem('walletSaldo') || 0;
+  $('#saldoActual').text('$' + saldo);
+
+  $('#btnDepositar').click(function (e) {
+    e.preventDefault();
+    alert('Redirigiendo a Depositar');
+    window.location.href = 'deposit.html';
   });
 
-  document.getElementById("btnEnviar").addEventListener("click", function (e) {
+  $('#btnEnviar').click(function (e) {
     e.preventDefault();
-    alert("Redirigiendo a enviar dinero");
-    window.location.href = "sendmoney.html";
+    alert('Redirigiendo a Enviar Dinero');
+    window.location.href = 'sendmoney.html';
   });
 
-  document.getElementById("btnMovimientos").addEventListener("click", function (e) {
+  $('#btnMovimientos').click(function (e) {
     e.preventDefault();
-    alert("Redirigiendo a últimos movimientos");
-    window.location.href = "transactions.html";
+    alert('Redirigiendo a Últimos Movimientos');
+    window.location.href = 'transactions.html';
   });
-        
-        </script>
+
+});
+</script>
 </body>
 </html>
+

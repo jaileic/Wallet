@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+  <!--
+  El link de acceso en Github es: https://github.com/jaileic/Wallet
+  Gracias <3
+-->
 <head>
   <title>Wallet - Depositar</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
@@ -15,6 +19,7 @@
     <div id="alertMensaje" class="alert" style="display: none;"></div>
     </div>
       <div class="p-3 mb-2 text-black">
+        <p><strong>Saldo actual:</strong> $<span id="saldoActual"></span></p>
     <form id="depositForm">
       <div class="form-group">
         <label for="depositAmount"><strong>Monto a depositar:</strong></label>
@@ -31,46 +36,43 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <script>
+   <script>
+$(document).ready(function () {
 
+  let saldo = parseInt(localStorage.getItem('walletSaldo')) || 0;
+  $('#saldoActual').text(saldo);
 
+  $('#depositForm').submit(function (e) {
+    e.preventDefault();
 
-        $(document).ready(function() {
-            var saldoActual = localStorage.getItem('walletSaldo');
-            if(saldoActual === null) {
-                saldoActual = 0;
-            } else {
-                saldoActual = parseInt(saldoActual); 
-            }
+    const monto = parseInt($('#depositAmount').val());
+    $('#alertMensaje').removeClass().hide();
 
-            // Versión Vanilla JS: document.getElementById('depositForm').addEventListener('submit', function(evento) {
-            $('#depositForm').submit(function(evento) {
-                evento.preventDefault();
-                var montoIngresado = $('#depositAmount').val();
-                var montoNumero = parseInt(montoIngresado);
+    if (monto > 0) {
+      saldo += monto;
+      localStorage.setItem('walletSaldo', saldo);
 
-                if(montoNumero > 0) {
-                    var nuevoSaldo = saldoActual + montoNumero;
-                    localStorage.setItem('walletSaldo', nuevoSaldo);
-                    
-                    // Solo agregamos la clase de éxito sin lógica de limpieza
-                    $('#alertMensaje').addClass('alert-success');
-                    $('#alertMensaje').text('¡Depósito exitoso! Nuevo saldo: $' + nuevoSaldo);
-                    
-                    $('#alertMensaje').slideDown();
-                    $('#depositAmount').val('');
-                    saldoActual = nuevoSaldo;
+      $('#alertMensaje')
+        .addClass('alert alert-success')
+        .html(`Depósito realizado 💰<br>Monto depositado: $${monto}`)
+        .slideDown();
 
-                } else {
-                    // Solo agregamos la clase de error sin lógica de limpieza
-                    $('#alertMensaje').addClass('alert-danger');
-                    $('#alertMensaje').text('El monto debe ser mayor a 0');
-                    $('#alertMensaje').slideDown();
-                }
-            });
-        });
-    </script>
+      setTimeout(() => {
+        window.location.href = 'menu.html';
+      }, 2000);
+
+    } else {
+      $('#alertMensaje')
+        .addClass('alert alert-danger')
+        .text('El monto debe ser mayor a 0')
+        .slideDown();
+    }
+  });
+
+});
+</script>
 </body>
 </html>
 </body>
 </html>
+

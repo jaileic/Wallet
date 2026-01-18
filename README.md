@@ -1,125 +1,86 @@
-💳 Wallet Web App
+💳 Wallet Digital - Proyecto Web
 
-Aplicación web simple que simula una billetera digital (wallet) desarrollada con HTML, CSS, JavaScript, Bootstrap y jQuery.
-Permite iniciar sesión, consultar saldo, depositar dinero, enviar dinero a contactos y ver movimientos.
+Proyecto de una billetera digital básica desarrollado con HTML, CSS, Bootstrap, JavaScript y jQuery, que permite simular operaciones comunes de una wallet como inicio de sesión, depósitos, envíos de dinero y visualización de movimientos.
 
-⚠️ Proyecto educativo / de práctica. No utiliza backend ni base de datos real.
+📌 Características principales
 
-🚀 Funcionalidades
+🔐 Inicio de sesión con validación
+
+💰 Visualización de saldo en tiempo real
+
+➕ Depósito de dinero
+
+💸 Envío de dinero a contactos
+
+👥 Gestión de contactos (agenda)
+
+📄 Visualización de últimos movimientos
+
+💾 Persistencia de datos usando Local Storage
+
+🎨 Interfaz responsive con Bootstrap
+
+🛠️ Tecnologías utilizadas
+
+HTML5, CSS3, Bootstrap 4, JavaScript, jQuery 3.6 y Local Storage.
+
+📁 Estructura del proyecto
+
+/
+index.html → Pantalla de inicio de sesión
+menu.html → Menú principal
+deposit.html → Pantalla de depósito
+sendmoney.html → Envío de dinero y contactos
+transactions.html → Últimos movimientos
 
 🔐 Inicio de sesión
 
-Usuario fijo:
-
+Credenciales de prueba:
 Email: admin@wallet.com
 
 Contraseña: 123456
 
-📋 Menú principal
+Al iniciar sesión correctamente, el usuario es redirigido automáticamente al menú principal.
 
-Visualización de saldo
+🧩 Funcionalidades por pantalla
+Login (index.html)
 
-Acceso a todas las funciones
+Uso de selectores jQuery para capturar los datos del formulario, manejo del evento submit con jQuery, validación de credenciales, uso de alertas Bootstrap para mostrar mensajes de éxito o error y redirección automática al menú principal.
 
-💰 Depósito de dinero
+Menú Principal (menu.html)
 
-Suma saldo usando localStorage
+Muestra el saldo actual obtenido desde Local Storage, contiene botones para Depositar, Enviar Dinero y Últimos Movimientos, y utiliza JavaScript para manejar los eventos y redirecciones entre pantallas.
 
-Validación de montos
+Depósito (deposit.html)
 
-💸 Envío de dinero
+Visualización del saldo actual antes de realizar el depósito, validación del monto ingresado, actualización del saldo en Local Storage, mensaje de éxito utilizando alertas Bootstrap y redirección automática al menú principal luego de un retraso de 2 segundos.
 
-Agenda de contactos
+Enviar Dinero (sendmoney.html)
 
-Agregar nuevos contactos con modal
+Permite gestionar una agenda de contactos, agregar nuevos contactos mediante un formulario con validación, buscar contactos por nombre o alias, seleccionar un contacto para habilitar el botón de envío y mostrar un mensaje de confirmación al finalizar la transferencia.
 
-Guardado de contactos en localStorage
+Últimos Movimientos (transactions.html)
 
-📊 Últimos movimientos
+Visualización dinámica de una lista ficticia de transacciones, preparada para ser reemplazada por datos reales, mostrando el tipo de movimiento y el monto correspondiente.
 
-Tabla de transacciones (ejemplo)
+💾 Persistencia de datos
 
-Lectura de historial desde localStorage
+El proyecto utiliza Local Storage para almacenar el saldo de la billetera, los contactos agregados y la información necesaria para mantener los datos aun cuando se recarga la página.
 
-🗂️ Estructura del proyecto
-/
-├── index.html          # Login
-├── menu.html           # Menú principal
-├── deposit.html        # Depositar dinero
-├── sendmoney.html      # Enviar dinero y contactos
-├── transactions.html  # Últimos movimientos
+📱 Diseño Responsive
 
-🛠️ Tecnologías usadas
+La interfaz está desarrollada con Bootstrap, lo que permite que la aplicación se adapte correctamente a distintos tamaños de pantalla como escritorio, tablets y dispositivos móviles.
 
-HTML5
+🚀 Cómo ejecutar el proyecto
 
-CSS3
+Clonar el repositorio con git clone https://github.com/tu-usuario/wallet-digital.git
+ o descargar los archivos y abrir el archivo index.html directamente en el navegador. No requiere servidor ni instalación adicional.
 
-JavaScript (Vanilla + jQuery)
+📌 Notas finales
 
-Bootstrap 4
+Este proyecto fue desarrollado con fines educativos, aplicando buenas prácticas de desarrollo web, manipulación del DOM, uso de jQuery, interactividad con JavaScript y diseño de interfaces con Bootstrap.
 
-Popper.js
+✨ Autor
 
-LocalStorage (almacenamiento en el navegador)
-
-▶️ Cómo ejecutar el proyecto
-
-Clona el repositorio:
-
-git clone https://github.com/tu-usuario/wallet-web.git
-
-
-Abre el archivo index.html en tu navegador
-(doble clic o con Live Server en VS Code).
-
-Inicia sesión con:
-
-Email: admin@wallet.com
-
-Contraseña: 123456
-
-💾 Almacenamiento de datos
-
-La aplicación utiliza localStorage para:
-
-Saldo de la wallet
-
-Contactos guardados
-
-Historial de movimientos
-
-⚠️ Los datos se almacenan solo en el navegador, no son persistentes entre dispositivos.
-
-📌 Notas importantes
-
-No existe backend ni validación real de usuarios.
-
-El saldo inicial y algunos movimientos son de ejemplo.
-
-Ideal para:
-
-Práctica de JavaScript
-
-Manejo de eventos
-
-Uso de localStorage
-
-Proyectos académicos
-
-✨ Posibles mejoras futuras
-
-Backend con autenticación real
-
-Conexión a base de datos
-
-Historial dinámico de transacciones
-
-Validación de montos personalizados al enviar dinero
-
-Diseño responsive mejorado
-
-👨‍💻 Autor
-
-Javera L.
-Proyecto de práctica y aprendizaje 💡
+Javiera L.
+Proyecto académico – Desarrollo Web

@@ -12,6 +12,7 @@ body { background: linear-gradient(90deg,rgb(174, 238, 226) 0%, rgb(180, 173, 24
   <div class="container-fluid">
     <div class="p-3 mb-2 bg-info text-black">
     <h2>Enviar Dinero</h2>
+    
     </div>
     <div class="p-3 mb-2">
     <form>
@@ -23,23 +24,9 @@ body { background: linear-gradient(90deg,rgb(174, 238, 226) 0%, rgb(180, 173, 24
       <button type="button" id="btnNuevoContacto" class="btn btn-info btn-md">Agregar nuevo contacto</button>
       <h3>Contactos</h3>
   <ul id="contactList" class="list-group">
-    <li class="list-group-item">
-      <div class="contact-info">
-        <span class="contact-name">John Doe</span>
-        <span class="contact-details">CBU: 123456789, Alias: john.doe, Banco: ABC Bank</span>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="contact-info">
-        <span class="contact-name">Jane Smith</span>
-        <span class="contact-details">CBU: 987654321, Alias: jane.smith, Banco: XYZ Bank</span>
-      </div>
-    </li>
-    <div><br></div>
       <button type="button" id="btnEnviar" class="btn btn-info btn-lg btn-block">Enviar dinero</button>
     </form>
     <a href="menu.html" class="btn btn-outline-info btn-lg btn-block">Volver al Menú Principal</a>
-    const modalHTML = `
 <div class="modal fade" id="modalContacto" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -75,12 +62,10 @@ document.body.insertAdjacentHTML("beforeend", modalHTML);
 <script>
 const contactList = document.getElementById("contactList");
 
-/* Abrir modal */
 document.getElementById("btnNuevoContacto").addEventListener("click", () => {
   $("#modalContacto").modal("show");
 });
 
-/* Guardar contacto */
 document.addEventListener("submit", function (e) {
   if (e.target.id !== "formContacto") return;
 
@@ -113,7 +98,6 @@ function agregarContacto(c) {
   contactList.appendChild(li);
 }
 
-/* Cargar contactos al iniciar */
 window.addEventListener("load", () => {
   const contactos = JSON.parse(localStorage.getItem("contactos")) || [];
   contactos.forEach(agregarContacto);
@@ -140,6 +124,27 @@ document.getElementById("btnEnviar").addEventListener("click", () => {
   localStorage.setItem("saldo", saldo);
 
   alert("Dinero enviado con éxito 💸\nNuevo saldo: $" + saldo);
+});
+</script>
+<script>
+$('#searchContact').on('keyup', function () {
+  const texto = $(this).val().toLowerCase();
+
+  $('#contactList li').filter(function () {
+    $(this).toggle($(this).text().toLowerCase().includes(texto));
+  });
+});
+
+$('input[name="contacto"]').change(function () {
+  $('#btnEnviar').show();
+});
+
+$('#btnEnviar').click(function () {
+  $('#contactList').after(`
+    <div class="alert alert-success mt-3">
+      Envío realizado con éxito 💸
+    </div>
+  `);
 });
 </script>
 

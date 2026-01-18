@@ -73,7 +73,7 @@ La interfaz está desarrollada con Bootstrap, lo que permite que la aplicación 
 
 🚀 Cómo ejecutar el proyecto
 
-Clonar el repositorio con git clone https://github.com/tu-usuario/wallet-digital.git
+Clonar el repositorio con git clone https://github.com/jaileic/Wallet
  o descargar los archivos y abrir el archivo index.html directamente en el navegador. No requiere servidor ni instalación adicional.
 
 📌 Notas finales
